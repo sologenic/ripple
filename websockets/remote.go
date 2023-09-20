@@ -599,10 +599,29 @@ func dump(b []byte) string {
 	return string(out)
 }
 
-// Synchronously requests account info
+// Synchronously requests server info
 func (r *Remote) ServerInfo() (*ServerInfoResult, error) {
 	cmd := &ServerInfoCommand{
 		Command: newCommand("server_info"),
+	}
+	r.outgoing <- cmd
+	<-cmd.Ready
+	if cmd.CommandError != nil {
+		return nil, cmd.CommandError
+	}
+	return cmd.Result, nil
+}
+
+// Load Gateway Balances for the given account
+// IMPORTANT: Check if the endpoint supports the command since not all endpoints support this command!
+// (last check xrplcluster.com supported the command)
+func (r *Remote) GatewayBalances(a data.Account) (*GatewayBalancesResult, error) {
+	cmd := &GatewayBalances{
+		Command:     newCommand("gateway_balances"),
+		Account:     a,
+		Strict:      true,
+		LedgerIndex: "validated",
+		HotWallet:   []data.Account{},
 	}
 	r.outgoing <- cmd
 	<-cmd.Ready
