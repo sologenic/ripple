@@ -1,6 +1,6 @@
-module github.com/rubblelabs/ripple
+module github.com/sologenic/ripple
 
-go 1.19
+go 1.21.0
 
 require (
 	github.com/bits-and-blooms/bitset v1.2.1
