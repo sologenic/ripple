@@ -6,7 +6,7 @@ require (
 	github.com/bits-and-blooms/bitset v1.2.1
 	github.com/btcsuite/btcd/btcec/v2 v2.1.3
 	github.com/fatih/color v1.13.0
-	github.com/golang/glog v1.0.0
+	github.com/golang/glog v1.2.4
 	github.com/gorilla/websocket v1.4.2
 	github.com/juju/testing v0.0.0-20210324180055-18c50b0c2098
 	golang.org/x/crypto v0.0.0-20211117183948-ae814b36b871
